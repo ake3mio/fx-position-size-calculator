@@ -1,0 +1,80 @@
+<form class="mdl-card mdl-shadow--2dp" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Configure your Account</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+
+    <div class="mdl-textfield mdl-js-textfield getmdl-select mdl-textfield--floating-label">
+      <input type="text" value="" class="mdl-textfield__input" id="baseCurrency"
+             [value]="form.get('baseCurrency').value" readonly>
+      <input type="hidden" value="" name="baseCurrency" formControlName="baseCurrency">
+      <label for="baseCurrency" class="mdl-textfield__label">Base Currency</label>
+      <ul for="baseCurrency" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+        <li class="mdl-menu__item" data-val="GBP" (click)="setBaseCurrency('GBP')">GBP</li>
+        <li class="mdl-menu__item" data-val="USD" (click)="setBaseCurrency('USD')">USD</li>
+      </ul>
+    </div>
+    <div class="mdl-textfield mdl-js-textfield getmdl-select mdl-textfield--floating-label">
+      <input type="text" value="" class="mdl-textfield__input" id="accountSize" [value]="getAccountSizeLabel()"
+             readonly>
+      <label for="accountSize" class="mdl-textfield__label">Account Size</label>
+      <ul for="accountSize" class="mdl-menu mdl-menu--bottom-left mdl-js-menu">
+        <li class="mdl-menu__item" *ngFor="let option of accountSize" (click)="setAccountSize(option.value)">{{option.label}}</li>
+      </ul>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="number" id="balance" formControlName="balance">
+      <label class="mdl-textfield__label" for="balance">Balance</label>
+    </div>
+
+    <div *ngIf="isFieldInvalid('balance')" class="alert alert-danger">
+      <div *ngIf="hasFieldError('balance', 'required')">
+        Balance is required.
+      </div>
+      <div *ngIf="hasFieldError('balance', 'min')">
+        Balance must be at least 0
+      </div>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="number" id="risk" formControlName="risk">
+      <label class="mdl-textfield__label" for="risk">Risk (%)</label>
+    </div>
+
+    <div *ngIf="isFieldInvalid('risk')" class="alert alert-danger">
+      <div *ngIf="hasFieldError('risk', 'required')">
+        Risk is required.
+      </div>
+      <div *ngIf="hasFieldError('risk', 'min')">
+        Risk must be at least 1%
+      </div>
+      <div *ngIf="hasFieldError('risk', 'max')">
+        Risk can be a maximum of 100%
+      </div>
+    </div>
+
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input class="mdl-textfield__input" type="number" id="stoploss" formControlName="stoploss">
+      <label class="mdl-textfield__label" for="stoploss">Stop Loss (pips)</label>
+    </div>
+
+    <div *ngIf="isFieldInvalid('stoploss')" class="alert alert-danger">
+
+      <div *ngIf="hasFieldError('stoploss', 'required')">
+        Stop Loss is required.
+      </div>
+
+      <div *ngIf="hasFieldError('stoploss', 'min')">
+        Stop Loss must be at least 1
+      </div>
+
+    </div>
+
+  </div>
+  <div class="mdl-card__actions mdl-card--border mdl-textfield--align-right">
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+      Update
+    </button>
+  </div>
+</form>

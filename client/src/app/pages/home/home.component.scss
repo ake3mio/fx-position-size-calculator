@@ -1,0 +1,13 @@
+.symbol-options {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.symbol-option {
+  flex-grow: 1;
+  flex-basis: 25%;
+}
+
+.symbol-options-card {
+  top: -16px;
+}

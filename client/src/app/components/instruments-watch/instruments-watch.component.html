@@ -1,0 +1,43 @@
+<div class="mdl-card mdl-shadow--2dp" *ngIf="prices.length">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">{{ updatedAt | date: 'full'  }}</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <table class="mdl-data-table mdl-data-table--selectable mdl-shadow--2dp">
+      <thead>
+      <tr>
+        <th class="mdl-data-table__cell--non-numeric">Currency Pair</th>
+        <th class="mdl-data-table__cell--non-numeric">Buy</th>
+        <th class="mdl-data-table__cell--non-numeric">Sell</th>
+        <th class="mdl-data-table__cell--non-numeric">Position size</th>
+        <th class="mdl-data-table__cell--non-numeric">Remove</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let price of prices; let i=index; trackBy: trackWatchRow">
+        <td class="mdl-data-table__cell--non-numeric">
+          {{price.instrument}}
+        </td>
+        <td class="mdl-data-table__cell--non-numeric">
+          {{price.bid}}
+        </td>
+        <td class="mdl-data-table__cell--non-numeric">
+          {{price.ask}}
+        </td>
+        <td class="mdl-data-table__cell--non-numeric">
+          <button class="mdl-button mdl-js-button mdl-button--colored" (click)="copyToClipboard(price.position)">
+            {{price.position}}
+          </button>
+        </td>
+        <td class="mdl-data-table__cell--non-numeric">
+          <button class="mdl-button mdl-js-button mdl-button--icon mdl-button--colored" (click)="remove(price.name)">
+            <i class="material-icons">close</i>
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+

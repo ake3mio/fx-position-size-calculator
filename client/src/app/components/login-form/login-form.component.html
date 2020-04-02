@@ -1,0 +1,49 @@
+<form class="mdl-card mdl-shadow--2dp" [formGroup]="form" (ngSubmit)="onSubmit($event)">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Login</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <div>
+
+      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+        <input class="mdl-textfield__input" type="text" name="accountId" id="accountId" formControlName="accountId">
+        <label class="mdl-textfield__label" for="accountId">Account ID</label>
+      </div>
+
+      <div
+        *ngIf="form.get('accountId').invalid && (form.get('accountId').dirty || form.get('accountId').touched)"
+        class="alert alert-danger">
+
+        <div *ngIf="form.get('accountId').errors.required">
+          Account ID is required.
+        </div>
+      </div>
+
+      <div>
+        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+          <input class="mdl-textfield__input" type="text" name="token" id="token" formControlName="token">
+          <label class="mdl-textfield__label" for="token">Api Key</label>
+        </div>
+
+        <div
+          *ngIf="form.get('token').invalid && (form.get('token').dirty || form.get('token').touched)"
+          class="alert alert-danger">
+
+          <div *ngIf="form.get('token').errors.required">
+            Api Key is required.
+          </div>
+        </div>
+      </div>
+      <div
+        *ngIf="isAnyTouchedOrDirty() && formError"
+        class="alert alert-danger">
+        {{formError}}
+      </div>
+    </div>
+  </div>
+  <div class="mdl-card__actions mdl-card--border mdl-textfield--align-right">
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+      Login
+    </button>
+  </div>
+</form>

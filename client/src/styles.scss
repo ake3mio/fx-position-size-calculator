@@ -1,0 +1,41 @@
+@import "~material-design-lite/material.css";
+
+.mdl-card, .mdl-data-table {
+  min-height: auto;
+  max-width: 100%;
+  width: 100%;
+}
+
+.mdl-grid {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.mdl-card__supporting-text {
+  width: auto;
+}
+
+.alert {
+  font-size: 12px;
+  padding: 4px;
+  display: inline-block;
+
+  &.alert-danger {
+    color: white;
+    background: red;
+  }
+}
+
+
+@media (max-width: 1024px) {
+
+  .mdl-layout__header-row {
+    height: 56px;
+    padding: 0 16px;
+  }
+
+  .mdl-cell--12-col,
+  .mdl-cell--12-col-phone {
+    width: 100%;
+  }
+}

@@ -1,0 +1,36 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="mdl-card mdl-shadow--2dp" #symbolOptionsElement>
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Add currency pairs</h2>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <input
+        class="mdl-textfield__input"
+        type="text"
+        id="currency"
+        formControlName="currency"
+        autocomplete="off"
+        (click)="filterInstruments()"
+        (input)="filterInstruments()">
+      <label class="mdl-textfield__label" for="currency">Currency pair</label>
+    </div>
+
+    <div class="mdl-card mdl-shadow--2dp symbol-options-card" *ngIf="options.length > 0">
+      <div class="mdl-card__actions mdl-card--border symbol-options">
+        <button
+          class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect symbol-option"
+          [class.mdl-button--colored]="selected.has(option.name)"
+          [class.mdl-button--raised]="selected.has(option.name)"
+          type="button"
+          (click)="addCurrencyPair(option.name)" *ngFor="let option of options">
+          {{option.displayName}}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="mdl-card__actions mdl-card--border mdl-textfield--align-right">
+    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--accent">
+      Update
+    </button>
+  </div>
+</form>

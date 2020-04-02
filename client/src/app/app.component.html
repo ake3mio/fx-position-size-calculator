@@ -1,0 +1,17 @@
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+  <header class="mdl-layout__header">
+    <div class="mdl-layout__header-row">
+      <span class="mdl-layout-title">Position size calculator</span>
+
+      <div class="mdl-layout-spacer"></div>
+      <button class="mdl-button mdl-js-button mdl-button--icon" (click)="logout()" *ngIf="displayLogout">
+        <i class="material-icons">exit_to_app</i>
+      </button>
+    </div>
+  </header>
+  <main class="mdl-layout__content">
+    <div class="page-content">
+        <router-outlet></router-outlet>
+    </div>
+  </main>
+</div>

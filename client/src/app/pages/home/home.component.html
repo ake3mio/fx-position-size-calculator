@@ -1,0 +1,18 @@
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--12-col-tablet">
+    <app-account-form
+      (onInit)="initAccount($event)"
+      (submit)="onAccountFormSubmit($event)">
+    </app-account-form>
+    <br>
+    <app-instruments-form>
+    </app-instruments-form>
+  </div>
+  <div class="mdl-cell mdl-cell--12-col-tablet mdl-cell--8-col-desktop">
+    <app-instruments-watch
+      (removeInstrument)="removeInstrument($event)"
+      [prices]="prices"
+      [updatedAt]="updatedAt">
+    </app-instruments-watch>
+  </div>
+</div>
