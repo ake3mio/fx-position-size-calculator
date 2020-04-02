@@ -18,8 +18,8 @@ const instrumentParams = (accountId) => {
 };
 
 const notifySockets = (sockets, payload) => {
-    for (const [_, socket] of sockets) {
-        socket.send(JSON.stringify(payload));
+    for (const [_, clients] of sockets) {
+        clients.forEach(client => client.send(JSON.stringify(payload)));
     }
 };
 

@@ -43,8 +43,8 @@ registerLocaleData(localeEnGb);
     StoreService,
     AuthService,
     {provide: LOCALE_ID, useValue: "en-GB"},
-    {provide: "API_WEBSOCKET_URL", useValue: `ws://${environment.websocketUrl}`},
-    {provide: "BASE_API_URL", useValue: `${window.location.protocol}//${environment.apiUrl}`},
+    {provide: "API_WEBSOCKET_URL", useValue: environment.websocketUrl},
+    {provide: "BASE_API_URL", useValue: environment.apiUrl},
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ApiInterceptor,

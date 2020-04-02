@@ -6,7 +6,8 @@
     "start": "NODE_ENV=production node ./server/bin/www",
     "dev": "NODE_ENV=development nodemon ./server/bin/www -w server",
     "postinstall": "cd client && npm i",
-    "build": "cd client && npm i && npm run build"
+    "build": "cd client && npm i && npm run build",
+    "deploy": "git push heroku master --force"
   },
   "dependencies": {
     "@oanda/v20": "3.0.25-0",

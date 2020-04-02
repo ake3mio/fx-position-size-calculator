@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  apiUrl: '',
-  websocketUrl: ''
+  apiUrl: 'https://fx-position-size-calculator.herokuapp.com',
+  websocketUrl: 'wss://fx-position-size-calculator.herokuapp.com'
 };

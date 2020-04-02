@@ -66,7 +66,7 @@ module.exports = (server, middleware) => {
 
         const close = function () {
             SubscriptionManager.removeFromRecord(user);
-            ClientManager.remove(user, sessionId);
+            ClientManager.remove(user, ws, sessionId);
         };
 
         ws.on('close', close);

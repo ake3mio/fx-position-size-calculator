@@ -59,7 +59,6 @@ export class NotificationService {
   <dialog class="mdl-dialog">
     <strong class="mdl-dialog__title" style="text-align: center; font-size: 16px; display: block">Notification</strong>
     <div class="mdl-dialog__content" style="text-align: center; font-weight: bold; font-size: 24px">
-        Allowing us to collect data will let us get you the information you want faster.
     </div>
   </dialog>
     `

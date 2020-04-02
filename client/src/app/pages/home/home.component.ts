@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnDestroy} from '@angular/core';
 import {PricesService} from "../../services/prices.service";
 import {Account} from '../../domain'
 import {Subscription} from "rxjs";
@@ -12,15 +12,22 @@ import {WebsocketService} from "../../services/websocket.service";
     [PricesService, {provide: WebsocketService}]
   ]
 })
-export class HomeComponent {
-
+export class HomeComponent implements OnDestroy {
+  lastPricesUpdateMs = null;
   account: Account;
   updatedAt = null;
   prices = [];
   removed = [];
   priceSubscription: Subscription;
+  interval: number;
 
   constructor(private pricesService: PricesService) {
+     this.interval = setInterval(()=>{
+      if(this.lastPricesUpdateMs && Date.now() - this.lastPricesUpdateMs > 3000) {
+        this.prices = [];
+        this.lastPricesUpdateMs = null;
+      }
+    });
   }
 
   onAccountFormSubmit(account: Account) {
@@ -65,6 +72,11 @@ export class HomeComponent {
       .subscribe(({prices, updatedAt}) => {
         this.setPrices(prices);
         this.updatedAt = updatedAt;
+        this.lastPricesUpdateMs = Date.now();
       });
+  }
+
+  ngOnDestroy(): void {
+    clearInterval(this.interval);
   }
 }

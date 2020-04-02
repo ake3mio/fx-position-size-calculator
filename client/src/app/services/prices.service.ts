@@ -5,7 +5,7 @@ import {NotificationService} from "./notification.service";
 import {EventType} from "../../../../common/websockets";
 import {StoreName, InstrumentSeparator} from "../../../../common/forex";
 import {Account} from "../domain";
-import {filter, finalize, flatMap, map} from "rxjs/operators";
+import {filter, finalize, flatMap, map, tap} from "rxjs/operators";
 import {HttpClient} from "@angular/common/http";
 import {getExchangeRateInstruments, getFormattedPosition, getPoint} from "../core/forex/utils";
 import {InstrumentsService} from "./instruments.service";
@@ -61,7 +61,8 @@ export class PricesService implements OnDestroy {
     return this.observable.pipe(
       flatMap<any, any>(this.getExchangeRateInstruments(account)),
       map(this.getAskBidPrice(account)),
-      finalize(() => {
+      tap(() => {
+        this.removeInstruments();
         if (!this.excluded.length) {
           this.excluded = [];
           this.removed = [];
